@@ -1,1 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monash Genomics & Bioinformatics Platform - GitHub Projects</title>
+    <!-- Tailwind CSS from CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Vue.js from CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        monash: '#005F9A',
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer components {
+            .repo-card {
+                @apply bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:shadow-lg hover:scale-105;
+            }
+            .repo-card-header {
+                @apply bg-monash text-white px-4 py-3 font-bold text-xl;
+            }
+            .repo-card-body {
+                @apply p-4;
+            }
+            .repo-name {
+                @apply text-gray-700 mb-3 font-mono text-sm;
+            }
+            .repo-image {
+                @apply bg-gray-100 h-40 w-full flex items-center justify-center mb-3 rounded;
+            }
+            .section-header {
+                @apply text-2xl font-bold text-monash mb-6 mt-12 border-b-2 border-monash pb-2;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div id="app">
+        <header class="bg-monash text-white py-10">
+            <div class="container mx-auto px-4">
+                <h1 class="text-4xl font-bold">Monash Genomics & Bioinformatics Platform</h1>
+                <p class="text-xl mt-2">Open Source GitHub Projects</p>
+            </div>
+        </header>
 
+        <main class="container mx-auto px-4 py-8">
+            <!-- Web apps and dashboards -->
+            <section>
+                <h2 class="section-header">Web Apps and Dashboards</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <repo-tile 
+                        v-for="repo in webApps" 
+                        :key="repo.name" 
+                        :title="repo.title" 
+                        :repo-name="repo.repoName" 
+                        :description="repo.description" 
+                        :url="repo.url"
+                        :repo-image="repo.repoImage">
+                    </repo-tile>
+                </div>
+            </section>
+
+            <!-- Commandline tools -->
+            <section>
+                <h2 class="section-header">Commandline Tools</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <repo-tile 
+                        v-for="repo in commandlineTools" 
+                        :key="repo.name" 
+                        :title="repo.title" 
+                        :repo-name="repo.repoName" 
+                        :description="repo.description" 
+                        :url="repo.url"
+                        :repo-image="repo.repoImage">
+                    </repo-tile>
+                </div>
+            </section>
+
+            <!-- Data Analysis -->
+            <section>
+                <h2 class="section-header">Data Analysis Tools</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <repo-tile 
+                        v-for="repo in dataAnalysisTools" 
+                        :key="repo.name" 
+                        :title="repo.title" 
+                        :repo-name="repo.repoName" 
+                        :description="repo.description" 
+                        :url="repo.url"
+                        :repo-image="repo.repoImage">
+                    </repo-tile>
+                </div>
+            </section>
+
+            <!-- Empty sections for future additions -->
+            <section>
+                <h2 class="section-header">Pipelines</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="flex items-center justify-center p-8 bg-gray-100 rounded-lg">
+                        <p class="text-gray-500 italic">Future pipelines will be listed here</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="section-header">Training & Workshops</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="flex items-center justify-center p-8 bg-gray-100 rounded-lg">
+                        <p class="text-gray-500 italic">Future training materials will be listed here</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="section-header">Open Analysis Projects</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="flex items-center justify-center p-8 bg-gray-100 rounded-lg">
+                        <p class="text-gray-500 italic">Future analysis projects will be listed here</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="bg-gray-800 text-white py-8">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-4 md:mb-0">
+                        <h3 class="text-xl font-bold">Monash Bioinformatics Platform</h3>
+                        <p class="mt-2">Providing bioinformatics support and solutions</p>
+                    </div>
+                    <div>
+                        <a href="https://github.com/MonashBioinformaticsPlatform" target="_blank" class="inline-flex items-center text-white hover:text-gray-300">
+                            <svg class="h-6 w-6 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
+                            </svg>
+                            GitHub Organization
+                        </a>
+                    </div>
+                </div>
+                <div class="mt-8 pt-8 border-t border-gray-700 text-center text-sm text-gray-400">
+                    © 2023 Monash Bioinformatics Platform. All rights reserved.
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Vue Component Templates -->
+    <script type="text/x-template" id="repo-tile-template">
+        <a :href="url" target="_blank" class="repo-card">
+            <div class="repo-card-header">{{ title }}</div>
+            <div class="repo-card-body">
+                <div class="repo-name">{{ repoName }}</div>
+                <div class="repo-image">
+                    <img v-if="repoImage" :src="repoImage" :alt="title" class="h-full w-full object-contain">
+                    <svg v-else xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-12 w-12 text-gray-400">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                </div>
+                <p class="text-gray-600">{{ description }}</p>
+            </div>
+        </a>
+    </script>
+
+    <!-- Vue.js Application Code -->
+    <script>
+        // Define the repo-tile component
+        const { createApp } = Vue;
+        
+        const app = createApp({
+            data() {
+                return {
+                    webApps: [
+                        {
+                            title: 'LFQ-Analyst',
+                            repoName: 'MonashBioinformaticsPlatform/LFQ-Analyst',
+                            description: 'A web application for analyzing label-free quantitation proteomics data',
+                            url: 'https://github.com/MonashBioinformaticsPlatform/LFQ-Analyst',
+                            repoImage: 'https://github.com/MonashBioinformaticsPlatform/LFQ-Analyst/raw/master/www/LFQ_analyst.svg'
+                        },
+                        {
+                            title: 'Laxy',
+                            repoName: 'MonashBioinformaticsPlatform/laxy',
+                            description: 'A web platform for running bioinformatics analyses in the cloud',
+                            url: 'https://github.com/MonashBioinformaticsPlatform/laxy',
+                            repoImage: 'https://github.com/MonashBioinformaticsPlatform/laxy/raw/master/docs/screenshots/job_page.png'
+                        }
+                    ],
+                    commandlineTools: [
+                        {
+                            title: 'Bio-Ansible',
+                            repoName: 'MonashBioinformaticsPlatform/bio-ansible',
+                            description: 'Ansible playbooks for setting up bioinformatics environments',
+                            url: 'https://github.com/MonashBioinformaticsPlatform/bio-ansible',
+                            repoImage: null
+                        },
+                        {
+                            title: 'Rocker-Ultra',
+                            repoName: 'MonashBioinformaticsPlatform/rocker-ultra',
+                            description: 'Extended Docker containers for R-based bioinformatics',
+                            url: 'https://github.com/MonashBioinformaticsPlatform/rocker-ultra',
+                            repoImage: null
+                        }
+                    ],
+                    dataAnalysisTools: [
+                        {
+                            title: 'Varistran',
+                            repoName: 'MonashBioinformaticsPlatform/varistran',
+                            description: 'Variance-stabilizing transformation for RNA-seq data visualization',
+                            url: 'https://github.com/MonashBioinformaticsPlatform/varistran',
+                            repoImage: null
+                        },
+                        {
+                            title: 'Celaref',
+                            repoName: 'MonashBioinformaticsPlatform/celaref',
+                            description: 'Single-cell annotation by reference',
+                            url: 'https://github.com/MonashBioinformaticsPlatform/celaref',
+                            repoImage: null
+                        }
+                    ]
+                }
+            }
+        });
+
+        // Register the repo-tile component
+        app.component('repo-tile', {
+            template: '#repo-tile-template',
+            props: {
+                title: String,
+                repoName: String,
+                description: String,
+                url: String,
+                repoImage: String
+            }
+        });
+
+        // Mount the app
+        app.mount('#app');
+    </script>
+</body>
+</html>
