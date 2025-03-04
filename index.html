@@ -63,6 +63,7 @@
                         :repo-name="repo.repoName" 
                         :description="repo.description" 
                         :url="repo.url"
+                        :source='repo.source'
                         :repo-image="repo.repoImage">
                     </repo-tile>
                 </div>
@@ -146,7 +147,7 @@
                     </div>
                 </div>
                 <div class="mt-8 pt-8 border-t border-gray-700 text-center text-sm text-gray-400">
-                    © 2023 Monash Bioinformatics Platform. All rights reserved.
+                    © 2025 Monash Genomics and Bioinformatics Platform. All rights reserved.
                 </div>
             </div>
         </footer>
@@ -200,7 +201,7 @@
                             description: 'A web platform for running RNAseq Analysis',
                                 url: 'https://degust.erc.monash.edu/'
                             source: 'https://github.com/drpowell/degust',
-                            repoImage: ''
+                            repoImage: null
                         }
                     ],
                     commandlineTools: [
