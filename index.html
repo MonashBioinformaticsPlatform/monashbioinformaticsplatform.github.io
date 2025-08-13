@@ -114,9 +114,15 @@
             <section>
                 <h2 class="section-header">Training & Workshops</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="flex items-center justify-center p-8 bg-gray-100 rounded-lg">
-                        <p class="text-gray-500 italic">Future training materials will be listed here</p>
-                    </div>
+                    <repo-tile 
+                        v-for="repo in trainingWorkshops" 
+                        :key="repo.name" 
+                        :title="repo.title" 
+                        :repo-name="repo.repoName" 
+                        :description="repo.description" 
+                        :url="repo.url"
+                        :repo-image="repo.repoImage">
+                    </repo-tile>
                 </div>
             </section>
 
@@ -235,6 +241,15 @@
                             repoName: 'MonashBioinformaticsPlatform/celaref',
                             description: 'Single-cell annotation by reference',
                             url: 'https://github.com/MonashBioinformaticsPlatform/celaref',
+                            repoImage: null
+                        }
+                    ],
+                    trainingWorkshops: [
+                        {
+                            title: 'Recommended Learning Resources',
+                            repoName: 'MonashBioinformaticsPlatform/learning-resource-links',
+                            description: 'Learning resources for bioinformatics, genomics and computational biology',
+                            url: 'https://github.com/MonashBioinformaticsPlatform/learning-resource-links',
                             repoImage: null
                         }
                     ]
